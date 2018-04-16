@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import friends from "./friends.json";
 import './App.css';
 import Pictures from "./components/Pictures";
@@ -35,12 +34,11 @@ class App extends Component {
       });
     }
     else {
-      if(topScore < score)
-        topScore = score;
+      topScore = (topScore < score) ? score : topScore;
+      console.log(topScore);
       score = 0;
-      for (var i = 0; i < friends.length; i++) {
+      for (var i = 0; i < friends.length; i++)
         friends[i].chosen = false;
-      }
       shuffleArray(friends);
       this.setState({
         friends: friends
