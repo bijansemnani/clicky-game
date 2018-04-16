@@ -6,7 +6,6 @@ const Pictures = props => (
     <div data-id={props.id} className="img-container">
       <img alt={props.name} src={props.image} />
     </div>
-
   </div>
 );
 
