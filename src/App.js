@@ -19,7 +19,10 @@ function shuffleArray(array) {
 class App extends Component {
 
   state = {
-    friends: friends
+    friends: friends,
+    score: score,
+    topScore: 0,
+    text: ""
   };
 
   toggleClick = (chosen, id) => {
@@ -30,7 +33,8 @@ class App extends Component {
       friends[id] = newObj;
       shuffleArray(friends);
       this.setState({
-        friends: friends
+        friends: friends,
+        score: score
       });
     }
     else {
@@ -41,7 +45,9 @@ class App extends Component {
         friends[i].chosen = false;
       shuffleArray(friends);
       this.setState({
-        friends: friends
+        friends: friends,
+        topScore: topScore,
+        text: "Incorrect try again!"
       });
     }
 
@@ -49,16 +55,32 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        {this.state.friends.map((friend, index )=> (
-          <Pictures
-            name={friend.name}
-            key={friend.id}
-            id={index}
-            image={friend.image}
-            toggleClick={this.toggleClick}
-            chosen={friend.chosen}
-          />
-        ))}
+        <div>
+          <h5>Score: {this.state.score} | High Score: {this.state.topScore}</h5>
+        </div>
+        <div className="container">
+          <div className="row">
+            <div className="col-12 text-center">
+                <h5>{this.state.text}</h5>
+            </div>
+          </div>
+          <div className="row">
+            {this.state.friends.map((friend, index )=> (
+            <div className="col-4">
+              <Pictures
+                  name={friend.name}
+                  key={friend.id}
+                  id={index}
+                  image={friend.image}
+                  toggleClick={this.toggleClick}
+                  chosen={friend.chosen}
+                />
+            </div>
+            ))}
+          </div>
+
+        </div>
+
       </Wrapper>
     );
   }
