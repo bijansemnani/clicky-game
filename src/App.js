@@ -34,7 +34,8 @@ class App extends Component {
       shuffleArray(friends);
       this.setState({
         friends: friends,
-        score: score
+        score: score,
+        text: ""
       });
     }
     else {
